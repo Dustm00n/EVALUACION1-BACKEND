@@ -1,9 +1,11 @@
 # API REST de Gestión de Usuarios
 
-Esta API proporciona endpoints para realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) sobre usuarios.
+Esta API proporciona endpoints para realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) sobre usuarios, con dos implementaciones diferentes:
 
-## Configuración Inicial
+## 1. API con Base de Datos MySQL (v1)
+Implementación que utiliza una base de datos MySQL para almacenar los datos de usuarios.
 
+### Configuración Inicial MySQL
 1. Asegúrese de tener instalado:
    - PHP 7.0 o superior
    - MySQL/MariaDB
@@ -21,91 +23,47 @@ Esta API proporciona endpoints para realizar operaciones CRUD (Crear, Leer, Actu
    );
    ```
 
-3. Ajuste las credenciales de la base de datos en `configapi.php`:
-   ```php
-   define('DB_HOST', 'localhost');
-   define('DB_USER', 'root'); 
-   define('DB_PASS', '');
-   define('DB_NAME', 'api');
+### Endpoints MySQL
+- GET /v1/usuarios - Obtiene todos los usuarios
+- GET /v1/usuarios/{id} - Obtiene un usuario específico
+- POST /v1/usuarios - Crea un nuevo usuario
+- PUT /v1/usuarios/{id} - Actualiza un usuario existente
+- DELETE /v1/usuarios/{id} - Elimina un usuario
+
+## 2. API con Archivo JSON (v2)
+Implementación alternativa que utiliza un archivo JSON como almacenamiento de datos.
+
+### Configuración Inicial JSON
+1. Requisitos:
+   - PHP 7.0 o superior
+   - Servidor web (Apache/Nginx)
+   - Permisos de escritura en el directorio data/
+
+2. Estructura del archivo JSON (data/usuarios.json):
+   ```json
+   {
+       "usuarios": [
+           {
+               "id": 1,
+               "nombre": "Juan Pérez",
+               "email": "juan@ejemplo.com"
+           }
+       ]
+   }
    ```
 
+### Endpoints JSON
+- GET /v2crudjson/usuarios - Obtiene todos los usuarios
+- GET /v2crudjson/usuarios/{id} - Obtiene un usuario específico
+- POST /v2crudjson/usuarios - Crea un nuevo usuario
+- PUT /v2crudjson/usuarios/{id} - Actualiza un usuario existente
+- DELETE /v2crudjson/usuarios/{id} - Elimina un usuario
 
-## token de acceso 
-  **Authorization Bearer: ciisa**
+## Autenticación
+Ambas versiones utilizan autenticación por token:
+- Token requerido: 'ciisa'
+- Debe enviarse en el header: Authorization: Bearer ciisa
 
-## Endpoints Disponibles
-
-### Obtener Usuarios
-- **GET** `/api/v1/usuarios`
-  - Obtiene lista de todos los usuarios
-- **GET** `/api/v1/usuarios/{id}`
-  - Obtiene un usuario específico por ID
-
-### Crear Usuario
-- **POST** `/api/v1/usuarios`
-  - Crea un nuevo usuario
-  - Cuerpo de la petición (JSON):
-    ```json
-    {
-        "nombre": "Juan Pérez",
-        "email": "juan@ejemplo.com"
-    }
-    ```
-
-### Actualizar Usuario
-- **PUT** `/api/v1/usuarios/{id}`
-  - Actualiza un usuario existente
-  - Cuerpo de la petición (JSON):
-    ```json
-    {
-        "nombre": "Juan Pérez Actualizado",
-        "email": "juan.nuevo@ejemplo.com"
-    }
-    ```
-
-### Eliminar Usuario
-- **DELETE** `/api/v1/usuarios/{id}`
-  - Elimina un usuario por ID
-
-## Ejemplos de Uso
-
-### Usando cURL
-
-1. Obtener todos los usuarios:
-   ```
-   curl -X GET http://localhost/api/v1/usuarios
-   ```
-
-2. Obtener un usuario específico (ID: 1):
-   ```
-   curl -X GET http://localhost/api/v1/usuarios/1
-   ```
-
-3. Crear un nuevo usuario:
-   ```
-   curl -X POST http://localhost/api/v1/usuarios \
-   -H "Content-Type: application/json" \
-   -d '{"nombre":"María García","email":"maria@ejemplo.com"}'
-   ```
-
-4. Actualizar un usuario (ID: 1):
-   ```
-   curl -X PUT http://localhost/api/v1/usuarios/1 \
-   -H "Content-Type: application/json" \
-   -d '{"nombre":"María García Actualizada","email":"maria.nueva@ejemplo.com"}'
-   ```
-
-5. Eliminar un usuario (ID: 1):
-   ```
-   curl -X DELETE http://localhost/api/v1/usuarios/1
-   ```
-
-## Notas Importantes
-
-- Asegúrese de que el archivo `configapi.php` esté en el directorio correcto y sea accesible.
-- Verifique que los permisos del servidor web sean adecuados para ejecutar scripts PHP.
-- Para pruebas en entorno de desarrollo, puede usar herramientas como Postman o Insomnia para interactuar con la API de manera más sencilla.
-- En un entorno de producción, considere implementar medidas de seguridad adicionales como autenticación y limitación de tasa.
 
 ¡Disfrute usando esta API CRUD de usuarios!
 
