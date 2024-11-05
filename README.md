@@ -1,4 +1,4 @@
-# API REST de Gestión de Usuarios
+# API REST de CRUD de Usuarios
 
 Esta API proporciona endpoints para realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) sobre usuarios, con dos implementaciones diferentes:
 
