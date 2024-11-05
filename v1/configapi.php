@@ -4,7 +4,9 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+
+
 
 // Manejo de errores
 error_reporting(E_ALL);
@@ -25,6 +27,39 @@ if ($conn->connect_error) {
         'error' => true,
         'mensaje' => 'Error de conexión: ' . $conn->connect_error
     ]));
+}
+
+// Función para validar el token
+function validarToken() {
+    $headers = getallheaders();
+    if (!isset($headers['Authorization'])) {
+        return false;
+    }
+
+    $authHeader = $headers['Authorization'];
+    if (empty($authHeader) || !preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
+        return false;
+    }
+
+    $token = $matches[1];
+    // Verificamos si el token es 'ciisa'
+    return $token === 'ciisa';
+}
+
+// Verificar el método OPTIONS para CORS
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+// Verificar token ANTES de procesar cualquier solicitud
+if (!validarToken()) {
+    http_response_code(401);
+    echo json_encode([
+        'error' => true,
+        'mensaje' => 'Token no válido o no proporcionado'
+    ]);
+    exit;
 }
 
 $response = ['error' => true, 'mensaje' => 'Recurso no encontrado o método no permitido'];
