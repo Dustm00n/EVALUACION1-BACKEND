@@ -1,22 +1,34 @@
 <?php
 require_once 'auth.php';
+require_once 'services.php';
+require_once 'about.php';
 
-// contenido estatico para la API
-$data['users'] = [
-    ['id' => 1, 'name' => 'User 1', 'email' => 'user1@example.com'],
-    ['id' => 2, 'name' => 'User 2', 'email' => 'user2@example.com'],
-    ['id' => 3, 'name' => 'User 3', 'email' => 'user3@example.com'],
-    ['id' => 4, 'name' => 'User 4', 'email' => 'user4@example.com'],
-    ['id' => 5, 'name' => 'User 5', 'email' => 'user5@example.com'],
-    ['id' => 6, 'name' => 'User 6', 'email' => 'user6@example.com'],
-    ['id' => 7, 'name' => 'User 7', 'email' => 'user7@example.com'],
-    ['id' => 8, 'name' => 'User 8', 'email' => 'user8@example.com'],
-    ['id' => 9, 'name' => 'User 9', 'email' => 'user9@example.com'],
-    ['id' => 10, 'name' => 'User 10', 'email' => 'user10@example.com']
-];
+// Obtener la ruta solicitada
+$requestUri = $_SERVER['REQUEST_URI'];
+$path = parse_url($requestUri, PHP_URL_PATH);
+$pathSegments = explode('/', trim($path, '/'));
 
-// Verificar el contenido de $data
-var_dump($data);
+// Verificar la ruta y aplicar autenticación si es necesario
+if (isset($pathSegments[3])) {
+    switch ($pathSegments[3]) {
+        case 'services':
+            require_once 'auth.php'; // Aplicar autenticación para /services
+            $data = getServices();
+            break;
+        case 'about':
+            $data = getAbout();
+            break;
+        default:
+            http_response_code(404);
+            $data = ['error' => 'Not Found'];
+            break;
+    }
+} else {
+    $data = [
+        'services' => getServices(),
+        'about' => getAbout()
+    ];
+}
 
 // Return del contenido
 echo json_encode($data);
