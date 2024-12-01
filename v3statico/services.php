@@ -1,18 +1,55 @@
 <?php
 function getServices() {
     $services = [
-        ['id' => 1, 'name' => 'Service 1', 'description' => 'Service 1 description'],
-        ['id' => 2, 'name' => 'Service 2', 'description' => 'Service 2 description'],
-        ['id' => 3, 'name' => 'Service 3', 'description' => 'Service 3 description'],
-        ['id' => 4, 'name' => 'Service 4', 'description' => 'Service 4 description'],
-        ['id' => 5, 'name' => 'Service 5', 'description' => 'Service 5 description'],
-        ['id' => 6, 'name' => 'Service 6', 'description' => 'Service 6 description'],
-        ['id' => 7, 'name' => 'Service 7', 'description' => 'Service 7 description'],
-        ['id' => 8, 'name' => 'Service 8', 'description' => 'Service 8 description'],
-        ['id' => 9, 'name' => 'Service 9', 'description' => 'Service 9 description'],
-        ['id' => 10, 'name' => 'Service 10', 'description' => 'Service 10 description']
+        [
+            'id' => 1,
+            'titulo' => [
+                'esp' => 'Consultoría digital',
+                'eng' => 'Digital consulting'
+            ],
+            'descripcion' => [
+                'esp' => 'Identificamos las fallas y conectamos los puntos entre tu negocio y tu estrategia digital. Nuestro equipo experto cuenta con años de experiencia en la definición de estrategias y hojas de ruta en función de tus objetivos específicos.',
+                'eng' => 'We identify failures and connect the dots between your business and your digital strategy. Our expert team has years of experience defining strategies and roadmaps based on your specific objectives.'
+            ],
+            'activo' => true
+        ],
+        [
+            'id' => 2,
+            'titulo' => [
+                'esp' => 'Soluciones multiexperiencia',
+                'eng' => 'Multi-experience solutions'
+            ],
+            'descripcion' => [
+                'esp' => 'Deleitamos a las personas usuarias con experiencias interconectadas a través de aplicaciones web, móviles, interfaces conversacionales, digital twin, IoT y AR. Su arquitectura puede adaptarse y evolucionar para adaptarse a los cambios de tu organización.',
+                'eng' => 'We delight users with interconnected experiences through web applications, mobile applications, conversational interfaces, digital twin, IoT and AR. Its architecture can adapt and evolve to adapt to changes in your organization.'
+            ],
+            'activo' => true
+        ],
+        [
+            'id' => 3,
+            'titulo' => [
+                'esp' => 'Evolución de ecosistemas',
+                'eng' => 'Ecosystem evolution'
+            ],
+            'descripcion' => [
+                'esp' => 'Ayudamos a las empresas a evolucionar y ejecutar sus aplicaciones de forma eficiente, desplegando equipos especializados en la modernización y el mantenimiento de ecosistemas técnicos. Creando soluciones robustas en tecnologías de vanguardia.',
+                'eng' => 'We help companies evolve and run their applications efficiently, deploying teams specialized in the modernization and maintenance of technical ecosystems. Creating robust solutions in cutting-edge technologies.'
+            ],
+            'activo' => true
+        ],
+        [
+            'id' => 4,
+            'titulo' => [
+                'esp' => 'Soluciones Low-Code',
+                'eng' => 'Low-Code Solutions'
+            ],
+            'descripcion' => [
+                'esp' => 'Traemos el poder de las soluciones low-code y no-code para ayudar a nuestros clientes a acelerar su salida al mercado y añadir valor. Aumentamos la productividad y la calidad, reduciendo los requisitos de cualificación de los desarrolladores.',
+                'eng' => 'We bring the power of low-code and no-code solutions to help our clients accelerate time to market and add value. We increase productivity and quality, reducing developer qualification requirements.'
+            ],
+            'activo' => true
+        ]
     ];
     return $services;
 }
-
 ?>

@@ -1,11 +1,37 @@
 <?php
- function getAbout() {
-     $about = [
-         ['id' => 1, 'name' => 'Resumen de la Empresa', 'description' => 'Somos una empresa líder en la industria tecnológica, proporcionando soluciones innovadoras a nuestros clientes.'],
-         ['id' => 2, 'name' => 'Misión', 'description' => 'Nuestra misión es entregar productos de alta calidad que aporten valor a nuestros clientes.'],
-         ['id' => 3, 'name' => 'Visión', 'description' => 'Ser la empresa tecnológica más confiable y respetada del mundo.'],
-         ['id' => 4, 'name' => 'Valores', 'description' => 'Integridad, Innovación, Satisfacción del Cliente y Excelencia.'],
-     ];
-     return $about;
- }
+function getAbout() {
+    $about = [
+        [
+            'titulo' => [
+                'esp' => 'Servicios de soporte, gestión y diseño de TI altamente personalizados.',
+                'eng' => 'Highly Tailored IT Design, Management & Support Services.'
+            ],
+            'descripcion' => [
+                'esp' => 'Acelere la innovación con equipos tecnológicos de clase mundial. Lo conectaremos con un equipo remoto completo de increíbles talentos independientes para todas sus necesidades de desarrollo de software.',
+                'eng' => 'Accelerate innovation with world-class tech teams. We’ll match you to an entire remote team of incredible freelance talent for all your software development needs.'
+            ]
+        ],
+        [
+            'titulo' => [
+                'esp' => 'Misión',
+                'eng' => 'Mission'
+            ],
+            'descripcion' => [
+                'esp' => 'Nuestra misión es ofrecer soluciones digitales innovadoras y de alta calidad que impulsen el éxito de nuestros clientes, ayudándolos a alcanzar sus objetivos empresariales a través de la tecnología y la creatividad.',
+                'eng' => 'Our mission is to deliver high-quality, innovative digital solutions that drive our clients\' success, helping them achieve their business goals through technology and creativity.'
+            ]
+        ],
+        [
+            'titulo' => [
+                'esp' => 'Visión',
+                'eng' => 'Vision'
+            ],
+            'descripcion' => [
+                'esp' => 'Nos visualizamos como líderes en el campo de la consultoría y desarrollo de software, reconocidos por nuestra excelencia en el servicio al cliente, nuestra capacidad para adaptarnos a las necesidades cambiantes del mercado y nuestra contribución al crecimiento y la transformación digital de las empresas.',
+                'eng' => 'We see ourselves as leaders in the field of software consulting and development, recognized for our excellence in customer service, our ability to adapt to changing market needs, and our contribution to the growth and digital transformation of companies.'
+            ]
+        ]
+    ];
+    return $about;
+}
 ?>

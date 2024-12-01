@@ -1,5 +1,6 @@
 <?php
 require_once 'auth.php';
+require_once 'basicInfo.php';
 require_once 'services.php';
 require_once 'about.php';
 
@@ -11,11 +12,19 @@ $pathSegments = explode('/', trim($path, '/'));
 // Verificar la ruta y aplicar autenticación si es necesario
 if (isset($pathSegments[3])) {
     switch ($pathSegments[3]) {
+        case 'basic-info':
+            $data = getBasicInfo();
+            break;
         case 'services':
-            require_once 'auth.php'; // Aplicar autenticación para /services
+            // Aplicar autenticación para /services
+            if (!isAuthenticated()) {
+                http_response_code(401);
+                $data = ['error' => 'Unauthorized'];
+                break;
+            }
             $data = getServices();
             break;
-        case 'about':
+        case 'about-us':
             $data = getAbout();
             break;
         default:
@@ -25,8 +34,9 @@ if (isset($pathSegments[3])) {
     }
 } else {
     $data = [
+        'basic-info' => getBasicInfo(),
         'services' => getServices(),
-        'about' => getAbout()
+        'about-us' => getAbout()
     ];
 }
 
